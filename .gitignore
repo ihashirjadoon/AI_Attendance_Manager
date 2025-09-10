@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Face encodings / model files
+*.pkl
+
+# Attendance logs
+*.csv
+
+# OS/system files
+.DS_Store
+Thumbs.db
