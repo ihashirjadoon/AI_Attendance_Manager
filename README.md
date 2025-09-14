@@ -17,6 +17,9 @@ It allows you to register students, recognize faces in real-time, and automatica
 
 ## Installation
 
+⚠️ **Python version requirement:** This project has been tested with **Python 3.10.11**.  
+Using a different version may cause compatibility issues with some libraries.
+
 1. **Clone this repository**
    ```bash
    git clone https://github.com/ihashirjadoon/AI_ATTENDANCE_MANAGER.git
