@@ -1,18 +1,27 @@
-# Virtual environment
-venv/
-
-# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.db
+*.log
 
-# Face encodings / model files
-*.pkl
+venv/
+ENV/
+env/
+.venv/
 
-# Attendance logs
-*.csv
-
-# OS/system files
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
+
+attendance/
+dataset/
+documentation/
+
+notebooks/.ipynb_checkpoints/
+.streamlit/
+
+*.swp
+*.bak
+*.tmp

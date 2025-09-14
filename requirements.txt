@@ -4,3 +4,9 @@ numpy
 pandas
 matplotlib
 streamlit 
+deepface
+scikit-learn
+insightface
+onnxruntime
+onnxruntime-gpu
+
