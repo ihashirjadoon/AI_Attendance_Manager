@@ -25,9 +25,18 @@ known_ids = [str(i).zfill(3) for i in data["ids"]]
 today = datetime.now().strftime("%Y-%m-%d")
 attendance_file = ATTENDANCE_DIR / f"attendance_{today}.csv"
 
+
 def initialize_attendance():
     if attendance_file.exists():
-        return pd.read_csv(attendance_file)
+        try:
+            df = pd.read_csv(attendance_file)
+            if df.empty:  # file exists but has no rows
+                raise pd.errors.EmptyDataError
+            return df
+        except (pd.errors.EmptyDataError, pd.errors.ParserError):
+            # reset file if empty or corrupted
+            attendance_file.unlink(missing_ok=True)
+    # rebuild attendance file
     records = []
     for folder in DATASET_DIR.iterdir():
         if folder.is_dir():
@@ -47,8 +56,10 @@ def initialize_attendance():
     df.to_csv(attendance_file, index=False)
     return df
 
+
 def save_attendance(df):
     df.to_csv(attendance_file, index=False)
+
 
 def get_facial_area(det):
     fa = det.get("facial_area", None)
@@ -59,6 +70,7 @@ def get_facial_area(det):
     if isinstance(fa, (list, tuple)) and len(fa) == 4:
         return fa
     return None
+
 
 def recognize_faces(camera_index=0):
     df = initialize_attendance()
@@ -107,6 +119,7 @@ def recognize_faces(camera_index=0):
     cap.release()
     cv2.destroyAllWindows()
     save_attendance(df)
+
 
 if __name__ == "__main__":
     recognize_faces()
