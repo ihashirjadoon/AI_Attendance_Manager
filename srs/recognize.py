@@ -28,12 +28,19 @@ known_ids = [str(i).zfill(3) for i in data["ids"]]
 today = datetime.now().strftime("%Y-%m-%d")
 attendance_file = ATTENDANCE_DIR / f"attendance_{today}.csv"
 
+
 def initialize_attendance():
     if attendance_file.exists():
         try:
-            return pd.read_csv(attendance_file)
+            df = pd.read_csv(attendance_file)
+            # ensure correct columns even if file is empty
+            if df.empty:
+                return pd.DataFrame(columns=["Date", "Name", "ID", "In-Time", "Out-Time"])
+            return df
         except pd.errors.EmptyDataError:
-            return pd.DataFrame(columns=["Date","Name","ID","In-Time","Out-Time"])
+            return pd.DataFrame(columns=["Date", "Name", "ID", "In-Time", "Out-Time"])
+
+    # if file does not exist, create records from dataset
     records = []
     for folder in DATASET_DIR.iterdir():
         if folder.is_dir():
@@ -49,12 +56,14 @@ def initialize_attendance():
                 })
             except ValueError:
                 continue
-    df = pd.DataFrame(records)
+    df = pd.DataFrame(records, columns=["Date", "Name", "ID", "In-Time", "Out-Time"])
     df.to_csv(attendance_file, index=False)
     return df
 
+
 def save_attendance(df):
     df.to_csv(attendance_file, index=False)
+
 
 def get_facial_area(det):
     fa = det.get("facial_area", None)
@@ -65,6 +74,7 @@ def get_facial_area(det):
     if isinstance(fa, (list, tuple)) and len(fa) == 4:
         return fa
     return None
+
 
 def recognize_faces(camera_index=0):
     df = initialize_attendance()
@@ -89,11 +99,13 @@ def recognize_faces(camera_index=0):
     st.warning("⚠️ Webcam not available. Using Streamlit camera input instead.")
     img = st.camera_input("Take a photo")
     if img is not None:
-        file_bytes = np.asarray(bytearray(img.read()), dtype=np.uint8)
+        # ✅ fix: convert UploadedFile -> numpy array correctly
+        file_bytes = np.frombuffer(img.getvalue(), np.uint8)
         frame = cv2.imdecode(file_bytes, 1)
         process_frame(frame, df)
         st.image(frame, channels="BGR", caption="Recognition Result")
         save_attendance(df)
+
 
 def process_frame(frame, df):
     try:
@@ -128,6 +140,7 @@ def process_frame(frame, df):
                 cv2.putText(frame, "Unknown", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
         except Exception:
             continue
+
 
 if __name__ == "__main__":
     recognize_faces()
