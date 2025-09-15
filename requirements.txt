@@ -7,4 +7,5 @@ matplotlib>=3.8,<3.11
 scikit-learn>=1.4,<1.8
 insightface==0.7.3
 onnxruntime>=1.20,<1.23
-tf-keras
+tensorflow>=2.16,<2.21
+tf-keras==2.16.0
