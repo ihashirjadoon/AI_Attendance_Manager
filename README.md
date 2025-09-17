@@ -1,7 +1,20 @@
 # AI Attendance Manager
 
+> ⚠️ **Important Note about the Demonstration Video**  
+> The video was recorded in one continuous Zoom session. After the first part (ending at **4:15**), I stepped away to bring in students for the recognition demonstration, assuming the recording was paused. However, Zoom continued recording during this idle period.  
+> For convenience, please use the guide below:  
+> - **0:00 – 4:15** → Project introduction and walkthrough  
+> - **4:15 – 16:25** → Idle section (can be skipped)  
+> - **16:25 – 17:45** → Main face recognition demonstration  
+>   
+> We recommend skipping directly to **16:25** to see the core functionality in action.  
+
 AI Attendance Manager is a face-recognition-based attendance system built with **Streamlit**, **OpenCV**, and **DeepFace**.  
 It allows you to register students, recognize faces in real-time, and automatically log attendance.
+
+**Developed by MSG Strickers for Techwiz 6**
+
+---
 
 **Developed by MSG Strickers for Techwiz 6**
 
