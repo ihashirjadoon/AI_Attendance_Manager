@@ -1,6 +1,6 @@
 # AI Attendance Manager
 
-> ⚠️ **Important Note about the Demonstration Video**  
+> # **Important Note about the Demonstration Video**  
 > The video was recorded in one continuous Zoom session. After the first part (ending at **4:15**), I stepped away to bring in students for the recognition demonstration, assuming the recording was paused. However, Zoom continued recording during this idle period.  
 > For convenience, please use the guide below:  
 > - **0:00 – 4:15** → Project introduction and walkthrough  
@@ -16,21 +16,17 @@ It allows you to register students, recognize faces in real-time, and automatica
 
 ---
 
-**Developed by MSG Strickers for Techwiz 6**
-
----
-
 ## Features
-- 📝 Register Students (via webcam or by uploading images)  
-- 📷 Real-Time Recognition with ArcFace embeddings  
-- 📊 Dashboard to view daily and overall attendance  
-- 📂 Attendance saved automatically in CSV files  
+-  Register Students (via webcam or by uploading images)  
+-  Real-Time Recognition with ArcFace embeddings  
+-  Dashboard to view daily and overall attendance  
+-  Attendance saved automatically in CSV files  
 
 ---
 
 ## Installation
 
-⚠️ **Python version requirement:** This project has been tested with **Python 3.10.11**.  
+ **Python version requirement:** This project has been tested with **Python 3.10.11**.  
 Using a different version may cause compatibility issues with some libraries.
 
 1. **Clone this repository**
@@ -66,7 +62,7 @@ The sidebar will show three options:
 2. **Register Student** – Add yourself or others (upload images or use webcam)  
 3. **Run Recognition** – Start the webcam and mark attendance automatically  
 
-📂 Attendance records will be stored inside the `attendance/` folder as daily CSV files.
+ Attendance records will be stored inside the `attendance/` folder as daily CSV files.
 
 ---
 
