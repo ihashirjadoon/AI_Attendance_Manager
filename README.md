@@ -12,9 +12,6 @@
 AI Attendance Manager is a face-recognition-based attendance system built with **Streamlit**, **OpenCV**, and **DeepFace**.  
 It allows you to register students, recognize faces in real-time, and automatically log attendance.
 
-**Developed by MSG Strickers for Techwiz 6**
-
----
 
 ## Features
 -  Register Students (via webcam or by uploading images)  
